@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Form Validation Example</title>
+</head>
+<body>
+
+  <h2>Sample Form</h2>
+  <form id="myForm">
+    <label for="name">Name (required):</label><br>
+    <input type="text" id="name" name="name" required><br><br>
+
+    <label for="email">Email (required):</label><br>
+    <input type="text" id="email" name="email" required><br><br>
+
+    <label for="age">Age (optional):</label><br>
+    <input type="text" id="age" name="age"><br><br>
+
+    <button type="submit">Submit</button>
+  </form>
+
+  <script>
+    document.getElementById('myForm').addEventListener('submit', function(event) {
+      const inputs = this.querySelectorAll('input[type="text"][required]');
+      let allFilled = true;
+
+      inputs.forEach(function(input) {
+        if (input.value.trim() === '') {
+          alert(`Please fill in the required field: ${input.name}`);
+          input.focus();
+          allFilled = false;
+          event.preventDefault(); // Stop form from submitting
+          return; // Exit the loop early
+        }
+      });
+
+    });
+  </script>
+
+</body>
+</html>
